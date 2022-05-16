@@ -1,8 +1,8 @@
 <?php
-$SMTPHost = "...";
-$SMTPUsername = "...";
-$SMTPPassword = "...";
+$SMTPHost = "smtp.gmail.com";
+$SMTPUsername = "devexca@gmail.com";
+$SMTPPassword = "9517536842";
 
-$SMTPFromEmail = "...";
-$SMTPFromName = "...";
+$SMTPFromEmail = "devexca@gmail.com";
+$SMTPFromName = "devexca";
 ?>

@@ -173,12 +173,38 @@ class UserModel{
 	}
 
 	public function enableUserAccount(){
+		/*
+			Méthode permettant d'activer le compte d'un utilisateur à l'aide de son adresse e-mail.
+		*/
 		try {
 	      $database = Model::getInstance();
 
 	      $query = "UPDATE user SET profile_verif_status = :status where email = :email";
 	      $statement = $database->prepare($query);
 	      $statement->bindParam(':status',$this->profile_verif_status);
+	      $statement->bindParam(':email',$this->email);
+	      
+	      if($statement->execute()){
+			return true;
+	      }
+
+	      return false;
+	    }catch (PDOException $e) {
+	      printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+	      return false;
+	    }
+	}
+
+	public function updateLoginStatus(){
+		/*
+			Méthode permettant de modifier le statut (Connecté/Déconnecté) d'un utilisateur à l'aide de son adresse e-mail.
+		*/
+		try {
+	      $database = Model::getInstance();
+
+	      $query = "UPDATE user SET login_status = :status where email = :email";
+	      $statement = $database->prepare($query);
+	      $statement->bindParam(':status',$this->login_status);
 	      $statement->bindParam(':email',$this->email);
 	      
 	      if($statement->execute()){

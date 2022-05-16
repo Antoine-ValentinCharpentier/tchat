@@ -1,7 +1,8 @@
 
 <!-- ----- debut Router -->
 <?php
-require ('../controller/Controller.php');
+require ('../controller/ControllerUser.php');
+require ('../controller/ControllerChatRoom.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -25,13 +26,18 @@ $args = $param;
 switch ($action) {
 	case 'register':
 	case 'verify':
-		Controller::$action($args);
+	case 'login':
+		ControllerUser::$action($args);
+		break;
+
+	case 'chatRoom':
+		ControllerChatRoom::$action($args);
 		break;
 
 	// Tache par défaut
 	default:
 		$action = "register";
-		Controller::$action();
+		ControllerUser::$action();
 
 }
 ?>
